@@ -4,7 +4,7 @@
 -- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ 
 
 -- Cargar desde GitHub Raw (reemplazar con su URL) desde el subgrave) 
-local LXUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/LXUi.lua"))() 
+local LXUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/dylanpolanco559-lang/Lxui/refs/heads/main/LXUi.txt"))() 
 
 -- â”€â”€ Crear la ventana principal local Window = LXUi:CreateWindow({ Title = " 
 LXUi 
