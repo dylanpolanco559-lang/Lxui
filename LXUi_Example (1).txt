@@ -1,0 +1,111 @@
+-- LXUi v2.0.0 — Ejemplo de uso
+-- Carga desde tu GitHub:
+local LXUi = loadstring(game:HttpGet(
+    "https://raw.githubusercontent.com/dylanpolanco559-lang/Lxui/refs/heads/main/LXUi.txt"
+))()
+
+local Window = LXUi:CreateWindow({
+    Title    = "Mi Script",
+    Subtitle = "by Dylan",
+    Theme    = "Dark",   -- "Dark" | "Neon" | "Crimson" | "Light"
+    Icon     = "rbxassetid://7733658504",
+})
+
+-- ── Tab 1 ────────────────────────────────────────────────
+local Tab1 = Window:CreateTab({
+    Name = "Principal",
+    Icon = "rbxassetid://7733960981",
+})
+
+local Sec1 = Tab1:AddSection({ Name = "Combate" })
+
+Sec1:AddToggle({
+    Name     = "ESP",
+    Default  = false,
+    Flag     = "ESP",
+    Callback = function(state)
+        print("ESP:", state)
+    end,
+})
+
+Sec1:AddSlider({
+    Name     = "WalkSpeed",
+    Min      = 16,
+    Max      = 250,
+    Default  = 16,
+    Suffix   = " st",
+    Flag     = "Speed",
+    Callback = function(val)
+        local char = game.Players.LocalPlayer.Character
+        if char and char:FindFirstChild("Humanoid") then
+            char.Humanoid.WalkSpeed = val
+        end
+    end,
+})
+
+Sec1:AddButton({
+    Name     = "Notificación",
+    Callback = function()
+        Window:Notify({
+            Title   = "¡Hola!",
+            Content = "LXUi v2.0 funcionando.",
+            Type    = "Success",
+            Duration = 3,
+        })
+    end,
+})
+
+-- ── Tab 2 ────────────────────────────────────────────────
+local Tab2 = Window:CreateTab({
+    Name = "Settings",
+    Icon = "rbxassetid://7734053951",
+})
+
+local Sec2 = Tab2:AddSection({ Name = "Visual" })
+
+Sec2:AddColorPicker({
+    Name     = "Color ESP",
+    Default  = Color3.fromRGB(255, 80, 80),
+    Flag     = "ESPColor",
+    Callback = function(color)
+        print("Color:", color)
+    end,
+})
+
+Sec2:AddDropdown({
+    Name     = "Tema",
+    Options  = { "Dark", "Neon", "Crimson", "Light" },
+    Default  = "Dark",
+    Callback = function(val)
+        print("Tema:", val)
+    end,
+})
+
+Sec2:AddKeybind({
+    Name     = "Toggle Menu",
+    Default  = Enum.KeyCode.RightShift,
+    Flag     = "MenuKey",
+    Callback = function(key)
+        print("Key:", key)
+    end,
+})
+
+Sec2:AddInput({
+    Name        = "Player Target",
+    Placeholder = "Nombre del jugador...",
+    Flag        = "Target",
+    Callback    = function(text)
+        print("Target:", text)
+    end,
+})
+
+Tab2:AddParagraph({
+    Title   = "Acerca de",
+    Content = "LXUi v2.0 — Compacto, rápido y con sonido de click.",
+})
+
+-- ── Leer flags ───────────────────────────────────────────
+-- LXUi.Flags.ESP       -> true/false
+-- LXUi.Flags.Speed     -> número
+-- LXUi.Flags.ESPColor  -> Color3
+-- LXUi.Flags.MenuKey   -> Enum.KeyCode
