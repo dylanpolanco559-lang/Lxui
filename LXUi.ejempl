@@ -1,0 +1,176 @@
+-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ 
+-- Script de ejemplo de LXUi 
+-- Cargar los gratuitos y mostrar todos componentes 
+-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ 
+
+-- Cargar desde GitHub Raw (reemplazar con su URL) desde el subgrave) 
+local LXUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/LXUi.lua"))() 
+
+-- â”€â”€ Crear la ventana principal local Window = LXUi:CreateWindow({ Title = " 
+LXUi 
+    Demo", 
+    Subtitle = "by TuNombre", 
+    Theme = "Dark", -- "Dark" | "Light" | "Crimson" 
+    Blur = true, 
+    Size = { Width = 580, Height = 430 }, 
+    Icon = "rbxassetid://7733658504", 
+}) 
+
+-- â”€â”€ Pestaña 1: General â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”. 
+local TabMain = Window:CreateTab({ 
+    Name = "General", 
+    Icon = "rbxassetid://7733960981", 
+}) 
+
+-- Sección Básica 
+local SecBasic = TabMain:AddSection({ Name = "Básico" }) 
+
+SecBasic:AddButton({ 
+    Name = "Ejecutar AcciÃ³n", 
+    Callback = function() 
+        Window:Notify({ 
+            Title = "BotÃ³n presionado!", 
+            Content = "La acciÃ³n se ejecutÃ³ correctamente.", 
+            Type = "Success", 
+            Duration = 3, 
+        }) 
+    end, 
+}) 
+
+local miToggle = SecBasic:AddToggle({ 
+    Name = "Activar ESP", 
+    Default = false, 
+    Flag = "ESP", 
+    Callback = function(state) 
+        print("ESP:", state) 
+    end, 
+}) 
+
+-- Puedes leer el estado de la siguiente manera: 
+-- print(miToggle:Get()) --> true / false 
+
+-- SecciÃ³n Avanzada 
+local SecAdv = TabMain:AddSection({ Name = "Avanzado" }) 
+
+local miSlider = SecAdv:AddSlider({ 
+    Name = "FOV", 
+    Min = 70, 
+    Max = 120, 
+    Default = 90, 
+    Sufijo = "°", 
+    Bandera = "FOV",
+    Callback = function(val) 
+        print("FOV cambiado a:", val) 
+    end, 
+}) 
+
+local miDropdown = SecAdv:AddDropdown({
+    Nombre = "Equipo", 
+    Opciones = { "Rojo", "Azul", "Verde", "Amarillo" }, 
+    Predeterminado = "Rojo", 
+    Bandera = "Equipo", 
+    Callback = function(opcion) 
+        print("Equipo seleccionado:", opcion) 
+    end, 
+}) 
+
+-- â”€â”€ Pestaña 2: Configuración local 
+TabSettings = Window:CreateTab({ 
+    Nombre = "Configuración", 
+    Icono = "rbxassetid://7734053951", 
+}) 
+
+local SecInput = TabSettings:AddSection({ Nombre = "Configuración" }) 
+
+local miInput = SecInput:AddInput({ 
+    Nombre = "Número", 
+    Marcador de posición = "Escribe tu número...", 
+    Bandera = "Número", 
+    Callback = function(text) 
+        print("Número:", text) 
+    end, 
+}) 
+
+local miColor = SecInput:AddColorPicker({ 
+    Nombre = "Color de ESP", 
+    Predeterminado = Color3.fromRGB(255, 80, 80), 
+    Flag = "ESPColor", 
+    Callback = function(color) 
+        print("Color:", color) 
+    end, 
+}) 
+
+local miKeybind = SecInput:AddKeybind({ 
+    Name = "Toggle Menu", 
+    Default = Enum.KeyCode.RightShift, 
+    Flag = "MenuKey", 
+    Callback = function(key) 
+        print("Tecla presionada:", key) 
+    end, 
+}) 
+
+-- SecciÃ³n Info 
+local SecInfo = TabSettings:AddSection({ Name = "Information" }) 
+
+SecInfo:AddParagraph({ 
+    Title = "Acer de LXUi", 
+    Content = "LXUi es una interfaz de usuario gratuita para Roblox inspirada en Rayfield y WindUI. Ofrece componentes modernos, animaciones fluidas, temas personalizables y compatibilidad con dispositivos móviles.", 
+}) 
+
+SecInfo:AddLabel({ 
+    Text = "LXUi v1.0.0 â€— Hecho con â ¤", 
+    Color = Color3.fromRGB(140, 140, 180), 
+}) 
+
+-- â”€â”€ Pestaña 3: Notificaciones â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â” 
+local TabNotifs = Window:CreateTab({ 
+    Nombre = "Notifs", 
+    Icono = "rbxassetid://7733717557", 
+}) 
+
+local SecNotif = TabNotifs:AddSection({ Name = "Prueba de Notificaciones" }) 
+
+SecNotif:AddButton({ 
+    Name = "Éxito", 
+    Callback = function() 
+        Window:Notify({ Title = "Éxito",Contenido = "Operación completada.", Tipo = "Éxito" }) 
+    fin, 
+}) 
+
+SecNotif:AddButton({ 
+    Nombre = "Error", 
+    Callback = function()
+        Window:Notify({ Title = "Error", Content = "Algo saliÃ³ mal.", Type = "Error" }) 
+    end, 
+}) 
+
+SecNotif:AddButton({ 
+    Name = "Advertencia", 
+    Callback = function() 
+        Window:Notify({ Title = "Advertencia", Content = "Ten cuidado con esto.", Type = "Warning" }) 
+    end, 
+}) 
+
+SecNotif:AddButton({ 
+    Name = "DiÃ¡logo", 
+    Callback = function() 
+        Window:Dialog({ 
+            Title = "¿Estás seguro?", 
+            Content = "Esta acción se puede deshacer. ¿Deseas continuar?", 
+            Buttons = { 
+                { Name = "Confirmar", Color = Color3.fromRGB(52, 211, 153), Callback = function() 
+                    Window:Notify({ Title = "Confirmed", Type = "Success" }) 
+                end }, 
+                { Name = "Cancelar", Color = Color3.fromRGB(70, 70, 100), Callback = function() 
+                    Window:Notify({ Title = "Cancelado", Type = "Info" }) 
+                end }, 
+            }, 
+        }) 
+    end, 
+}) 
+
+-- â”€â”€ Leer Flags globales en cualquier momento â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ 
+-- print(LXUi.Flags.ESP) --> true/false 
+-- print(LXUi.Flags.FOV) --> number 
+-- print(LXUi.Flags.Team) --> string 
+-- print(LXUi.Flags.MenuKey) --> KeyCode
