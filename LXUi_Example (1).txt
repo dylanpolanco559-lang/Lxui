@@ -1,7 +1,7 @@
 -- LXUi v2.0.0 — Ejemplo de uso
 -- Carga desde tu GitHub:
 local LXUi = loadstring(game:HttpGet(
-    "https://raw.githubusercontent.com/dylanpolanco559-lang/Lxui/refs/heads/main/LXUi.txt"
+    "https://raw.githubusercontent.com/dylanpolanco559-lang/Lxui/refs/heads/main/LXUi%20(1).txt"
 ))()
 
 local Window = LXUi:CreateWindow({
