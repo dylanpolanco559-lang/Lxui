@@ -1,5 +1,4 @@
--- LLLLL.HUB UI Library
--- Uso: loadstring(game:HttpGet("RAW_URL"))()
+
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
@@ -687,36 +686,3 @@ function showHub()
     -- Retornar hub para que el usuario lo use
     return Hub
 end
-
--- ================================================
--- USO DE EJEMPLO (descomenta para probar)
--- ================================================
---[[
-task.delay(3.1, function()  -- esperar al loader
-    local Hub = _G.LLLLL_HUB
-    if not Hub then return end
-
-    local tab1 = Hub:AddTab("Principal")
-    tab1:AddLabel("Bienvenido a LLLLL.HUB")
-    tab1:AddButton("Ejecutar algo", function()
-        print("Ejecutado!")
-    end)
-    tab1:AddToggle("God Mode", false, function(v)
-        print("God mode:", v)
-    end)
-    tab1:AddSeparator()
-    tab1:AddTextbox("Escribe un valor...", function(text)
-        print("Texto:", text)
-    end)
-
-    local tab2 = Hub:AddTab("Ajustes")
-    tab2:AddLabel("Configuracion")
-    tab2:AddToggle("ESP", false, function(v) print("ESP:", v) end)
-    tab2:AddToggle("Aimbot", false, function(v) print("Aimbot:", v) end)
-end)
-]]
-
--- Para usar la libreria desde otro script:
--- local Hub = loadstring(game:HttpGet("RAW_URL"))()
--- local miTab = Hub:AddTab("Mi Tab")
--- miTab:AddButton("Hola", function() print("hola") end)
